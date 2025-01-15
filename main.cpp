@@ -1,42 +1,30 @@
 #include <iostream>
 #include <string>
-#include <algorithm>
 
 using namespace std;
 
-bool isPalindrome(const string& str)
+void removeCharacter(string& str, size_t pos)
 {
-    string cleanedStr;
-    for (char ch : str)
+    if (pos < str.size())
     {
-        if (isalnum(ch))
-        {
-            cleanedStr += tolower(ch);
-        }
+        str.erase(pos, 1);
     }
-
-    string reversedStr = cleanedStr;
-    reverse(reversedStr.begin(), reversedStr.end());
-
-    return cleanedStr == reversedStr;
 }
 
 int main()
 {
     string str;
+    size_t pos;
 
     cout << "Enter a string: ";
     getline(cin, str);
 
-    if (isPalindrome(str))
-    {
-        cout << "The string is a palindrome.\n";
-    }
+    cout << "Enter the position of the character to remove: ";
+    cin >> pos;
 
-    else
-    {
-        cout << "The string is not a palindrome.\n";
-    }
+    removeCharacter(str, pos);
+
+    cout << "Modified string: " << str << endl;
 
     return 0;
 }
