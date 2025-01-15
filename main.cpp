@@ -1,15 +1,27 @@
 #include <iostream>
 #include <string>
+#include <cctype>
 
 using namespace std;
 
-void replaceSpacesWithTabs(string& str)
+void countCharacters(const string& str, int& letters, int& digits, int& others)
 {
-    for (char& ch : str)
+    letters = digits = others = 0;
+    for (char ch : str)
     {
-        if (ch == ' ')
+        if (isalpha(ch))
         {
-            ch = '\t';
+            ++letters;
+        }
+
+        else if (isdigit(ch))
+        {
+            ++digits;
+        }
+
+        else
+        {
+            ++others;
         }
     }
 }
@@ -17,13 +29,14 @@ void replaceSpacesWithTabs(string& str)
 int main()
 {
     string str;
+    int letters, digits, others;
 
     cout << "Enter a string: ";
     getline(cin, str);
 
-    replaceSpacesWithTabs(str);
+    countCharacters(str, letters, digits, others);
 
-    cout << "Modified string:\n" << str << endl;
+    cout << "Letters: " << letters << "\nDigits: " << digits << "\nOther symbols: " << others << endl;
 
     return 0;
 }
