@@ -3,27 +3,31 @@
 
 using namespace std;
 
-void swapChar(string& str)
+int countOccurrences(const string& str, char ch)
 {
-    for (char& ch : str)
+    int count = 0;
+    for (char c : str)
     {
-        if (ch == '.')
+        if (c == ch)
         {
-            ch = '!';
+            ++count;
         }
     }
+    return count;
 }
 
 int main()
 {
     string str;
+    char ch;
 
     cout << "Enter a string: ";
     getline(cin, str);
 
-    swapChar(str);
+    cout << "Enter the character to count: ";
+    cin >> ch;
 
-    cout << "Modified string: " << str << endl;
+    cout << "The character '" << ch << "' appears " << countOccurrences(str, ch) << " times." << endl;
 
     return 0;
 }
