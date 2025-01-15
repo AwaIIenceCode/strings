@@ -1,33 +1,42 @@
 #include <iostream>
 #include <string>
+#include <cctype>
 
 using namespace std;
 
-int countOccurrences(const string& str, char ch)
+void countCharacterTypes(const string& str, int& letters, int& digits, int& others)
 {
-    int count = 0;
-    for (char c : str)
+    letters = digits = others = 0;
+    for (char ch : str)
     {
-        if (c == ch)
+        if (isalpha(ch))
         {
-            ++count;
+            ++letters;
+        }
+
+        else if (isdigit(ch))
+        {
+            ++digits;
+        }
+
+        else
+        {
+            ++others;
         }
     }
-    return count;
 }
 
 int main()
 {
     string str;
-    char ch;
+    int letters, digits, others;
 
     cout << "Enter a string: ";
     getline(cin, str);
 
-    cout << "Enter the character to count: ";
-    cin >> ch;
+    countCharacterTypes(str, letters, digits, others);
 
-    cout << "The character '" << ch << "' appears " << countOccurrences(str, ch) << " times." << endl;
+    cout << "Letters: " << letters << "\nDigits: " << digits << "\nOther symbols: " << others << endl;
 
     return 0;
 }
