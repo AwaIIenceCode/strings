@@ -1,31 +1,42 @@
 #include <iostream>
 #include <string>
-#include <sstream>
+#include <algorithm>
 
 using namespace std;
 
-int countWords(const string& str)
+bool isPalindrome(const string& str)
 {
-    istringstream stream(str);
-    int count = 0;
-    string word;
-
-    while (stream >> word)
+    string cleanedStr;
+    for (char ch : str)
     {
-        ++count;
+        if (isalnum(ch))
+        {
+            cleanedStr += tolower(ch);
+        }
     }
 
-    return count;
+    string reversedStr = cleanedStr;
+    reverse(reversedStr.begin(), reversedStr.end());
+
+    return cleanedStr == reversedStr;
 }
 
 int main()
 {
     string str;
 
-    cout << "Enter a sentence: ";
+    cout << "Enter a string: ";
     getline(cin, str);
 
-    cout << "Number of words: " << countWords(str) << endl;
+    if (isPalindrome(str))
+    {
+        cout << "The string is a palindrome.\n";
+    }
+
+    else
+    {
+        cout << "The string is not a palindrome.\n";
+    }
 
     return 0;
 }
