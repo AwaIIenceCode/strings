@@ -1,28 +1,26 @@
 #include <iostream>
 #include <string>
+#include <algorithm>
 
 using namespace std;
 
-void removeCharacter(string& str, size_t pos)
+void removeAllOccurrences(string& str, char ch)
 {
-    if (pos < str.size())
-    {
-        str.erase(pos, 1);
-    }
+    str.erase(remove(str.begin(), str.end(), ch), str.end());
 }
 
 int main()
 {
     string str;
-    size_t pos;
+    char ch;
 
     cout << "Enter a string: ";
     getline(cin, str);
 
-    cout << "Enter the position of the character to remove: ";
-    cin >> pos;
+    cout << "Enter the character to remove: ";
+    cin >> ch;
 
-    removeCharacter(str, pos);
+    removeAllOccurrences(str, ch);
 
     cout << "Modified string: " << str << endl;
 
