@@ -1,42 +1,31 @@
 #include <iostream>
 #include <string>
-#include <cctype>
+#include <sstream>
 
 using namespace std;
 
-void countCharacters(const string& str, int& letters, int& digits, int& others)
+int countWords(const string& str)
 {
-    letters = digits = others = 0;
-    for (char ch : str)
+    istringstream stream(str);
+    int count = 0;
+    string word;
+
+    while (stream >> word)
     {
-        if (isalpha(ch))
-        {
-            ++letters;
-        }
-
-        else if (isdigit(ch))
-        {
-            ++digits;
-        }
-
-        else
-        {
-            ++others;
-        }
+        ++count;
     }
+
+    return count;
 }
 
 int main()
 {
     string str;
-    int letters, digits, others;
 
-    cout << "Enter a string: ";
+    cout << "Enter a sentence: ";
     getline(cin, str);
 
-    countCharacters(str, letters, digits, others);
-
-    cout << "Letters: " << letters << "\nDigits: " << digits << "\nOther symbols: " << others << endl;
+    cout << "Number of words: " << countWords(str) << endl;
 
     return 0;
 }
