@@ -3,30 +3,25 @@
 
 using namespace std;
 
-void insertCharacter(string& str, size_t pos, char ch)
+void swapChar(string& str)
 {
-    if (pos <= str.size())
+    for (char& ch : str)
     {
-        str.insert(pos, 1, ch);
+        if (ch == '.')
+        {
+            ch = '!';
+        }
     }
 }
 
 int main()
 {
     string str;
-    size_t pos;
-    char ch;
 
     cout << "Enter a string: ";
     getline(cin, str);
 
-    cout << "Enter the position to insert the character: ";
-    cin >> pos;
-
-    cout << "Enter the character to insert: ";
-    cin >> ch;
-
-    insertCharacter(str, pos, ch);
+    swapChar(str);
 
     cout << "Modified string: " << str << endl;
 
